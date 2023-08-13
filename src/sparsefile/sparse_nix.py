@@ -25,7 +25,7 @@ def hole(self, start:int, length:int):
     errno = get_errno()
     if result == 0:
         return True
-    raise OSError(errno = errno, strerror='Unable to deallocate space in file')    
+    raise OSError(errno, 'Unable to deallocate space in file')    
 
 def open_sparse(*args, **kwargs)->Any:    
     file = open(*args, **kwargs)
