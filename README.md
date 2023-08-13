@@ -26,3 +26,6 @@ Windows requires a file to be flagged as a sparse file in order to be able to ma
 
 ### Linux
 Broadly speaking, a file in Linux only needs to be on a supported filesystem in order to become sparse. The [Debian Man Pages site](https://manpages.debian.org/bookworm/manpages-dev/fallocate.2.en.html) has a current list as of this writing.
+
+### WSL
+I have tested this code on both an Ubuntu VM and Ubuntu 22.04 on WSL. It does work on WSL as long as the filesystem is supported. WSL mounts on /mnt are not supported. However, the root directory is ext4 and I was able to create spares files in my home directory.
