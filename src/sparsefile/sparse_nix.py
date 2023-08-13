@@ -2,8 +2,6 @@ from ctypes import *
 from typing import Any
 from types import MethodType
 
-from .error import raise_plus
-
 libc = CDLL("libc.so.6",use_errno=True)
 
 FALLOC_FL_KEEP_SIZE      = 0x01
