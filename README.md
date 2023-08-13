@@ -3,6 +3,12 @@ Python package for creating and managing sparse files
 
 This is a pure-Python package that uses ctypes to call OS-native libraries to create sparse files and to remove physical storage assigned to those files. It was inspired by the [fallocate PyPi module](https://github.com/trbs/fallocate), but requires no compilation. I would be willing to extend this to work on OS X but personally lack the means to test the code.
 
+## Installation
+
+```bash
+$ pip install sparsefile
+```
+
 ## Usage
 `open_sparse(file, mode='r', buffering=- 1, encoding=None, errors=None, newline=None, closefd=True, opener=None)`
 
@@ -29,3 +35,15 @@ Broadly speaking, a file in Linux only needs to be on a supported filesystem in 
 
 ### WSL
 I have tested this code on both an Ubuntu VM and Ubuntu 22.04 on WSL. It does work on WSL as long as the filesystem is supported. WSL mounts on /mnt are not supported. However, the root directory is ext4 and I was able to create spares files in my home directory.
+
+## Contributing
+
+Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+
+## License
+
+`sparsefile` was created by Michael Wilmes. It is licensed under the terms of the MIT license.
+
+## Credits
+
+`sparsefile` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
