@@ -2,7 +2,6 @@ from ctypes import *
 from msvcrt import get_osfhandle
 from typing import Any
 from types import MethodType
-from .error import raise_plus
 
 FSCTL_SET_ZERO_DATA = 0X980C8
 FSCTL_SET_SPARSE = 0X900C4
