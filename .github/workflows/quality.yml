@@ -15,6 +15,10 @@ jobs:
     # Set up operating system
     runs-on: ${{ matrix.os }}
 
+    # Set the default shell to bash (for Windows)
+    defaults:
+      run:
+        shell: bash
 
     # Define job steps
     steps:
@@ -22,19 +26,29 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
+          cache: 'poetry'
 
       - name: Check-out repository
         uses: actions/checkout@v3
 
       - name: Install poetry
         uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
 
-      - name: Update PATH on Windows
-        run: PATH=%PATH%;C:\Users\runneradmin\.local\bin
-        if: ${{ matrix.os == 'windows-latest'}}
+      - name: Load cached venv
+        id: cached-pip-wheels
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: venv-${{ matrix.os }}-${{ matrix.python }}-${{ hashFiles('**/poetry.lock') }}
 
-      - name: Install package
-        run: poetry install
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Install library
+        run: poetry install --no-interaction
 
       - name: Test with pytest
         run: poetry run pytest --cov=sparse_file --cov-report=xml:coverage-${{ matrix.os }}-${{ matrix.python }}.xml tests/
