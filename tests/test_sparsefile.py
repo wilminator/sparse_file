@@ -45,9 +45,8 @@ def test_file_sparse_operations():
     assert bytes_to_write == bytes_written
     # Commit to disk.
     file.flush()
-    # Get the current size stats.
-    stat = filename.stat()
-    space_used = stat.st_blksize * stat.st_blocks
+    # Get the current size.
+    space_used = file.size_on_disk()
     # Generate a random list of blocks to punch holes out with.
     blocks = list(range(0,bytes_to_write, block_size))
     shuffle(blocks)
@@ -58,7 +57,7 @@ def test_file_sparse_operations():
         assert result == True
         # Confirm the space was removed.
         stat = filename.stat()
-        new_space_used = stat.st_blksize * stat.st_blocks
+        new_space_used = file.size_on_disk()
         assert new_space_used < space_used
         space_used = new_space_used
     # Cleanup.
@@ -79,9 +78,6 @@ if platform().find('WSL2') != -1:
         assert bytes_to_write == bytes_written
         # Commit to disk.
         file.flush()
-        # Get the current size stats.
-        stat = wsl_filename.stat()
-        space_used = stat.st_blksize * stat.st_blocks
         # Generate a random list of blocks to punch holes out with.
         blocks = list(range(0,bytes_to_write, block_size))
         shuffle(blocks)
