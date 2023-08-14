@@ -16,7 +16,7 @@ def test_import():
         import sparse_file
     except Exception as e:
         result = e
-    assert isinstance(result, RuntimeError) == os not in ('Linux','Windows')
+    assert isinstance(result, RuntimeError) == (os not in ('Linux','Windows'))
 
 if os in ('Linux','Windows'):
     from sparse_file import open_sparse
