@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "sparsefile"
+name = "sparse-file"
 version = "0.0.1"
 description = "Python package for creating and managing sparse files."
 authors = ["Michael Wilmes"]
@@ -30,7 +30,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [project]
-name = "sparsefile"
+name = "sparse-file"
 authors = [
   { name="Michael Wilmes", email="michael.wilmes@gmail.com" },
 ]
@@ -48,5 +48,5 @@ classifiers = [
 dynamic = ["version", "description"]
 
 [project.urls]
-"Homepage" = "https://github.com/wilminator/sparsefile"
-"Bug Tracker" = "https://github.com/wilminator/sparsefile/issues"
+"Homepage" = "https://github.com/wilminator/sparse_file"
+"Bug Tracker" = "https://github.com/wilminator/sparse_file/issues"

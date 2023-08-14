@@ -1,4 +1,4 @@
-# sparsefile
+# sparse_file
 Python package for creating and managing sparse files
 
 This is a pure-Python package that uses ctypes to call OS-native libraries to create sparse files and to remove physical storage assigned to those files. It was inspired by the [fallocate PyPi module](https://github.com/trbs/fallocate), but requires no compilation. I would be willing to extend this to work on OS X but personally lack the means to test the code.
@@ -6,7 +6,7 @@ This is a pure-Python package that uses ctypes to call OS-native libraries to cr
 ## Installation
 
 ```bash
-$ pip install sparsefile
+$ pip install sparse-file
 ```
 
 ## Usage
@@ -48,8 +48,8 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## License
 
-`sparsefile` was created by Michael Wilmes. It is licensed under the terms of the MIT license.
+`sparse-file` was created by Michael Wilmes. It is licensed under the terms of the MIT license.
 
 ## Credits
 
-`sparsefile` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`sparse-file` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).

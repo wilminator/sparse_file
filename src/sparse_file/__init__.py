@@ -1,6 +1,6 @@
 """Python package for creating and managing sparse files"""
 from importlib.metadata import version
-__version__ = version("sparsefile")
+__version__ = version("sparse_file")
 
 from platform import system
 os = system()

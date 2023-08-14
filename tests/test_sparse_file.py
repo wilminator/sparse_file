@@ -1,4 +1,4 @@
-from sparsefile import open_sparse
+from sparse_file import open_sparse
 
 from tempfile import mktemp
 from pathlib import Path
