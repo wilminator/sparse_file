@@ -1,6 +1,7 @@
 from ctypes import *
 from typing import Any
 from types import MethodType
+from os import fstat
 
 libc = CDLL("libc.so.6",use_errno=True)
 
@@ -27,11 +28,20 @@ def hole(self, start:int, length:int):
         return True
     raise OSError(errno, 'Unable to deallocate space in file')    
 
+def size_on_disk(self):
+    if self.closed:
+        raise RuntimeError("The file has been closed.")
+    fileno = self.fileno()
+    stat = fstat(fileno)    
+    # Magic is per os.stat_result documentation https://docs.python.org/3/library/os.html#os.stat_result
+    return 512 * stat.st_blocks
+
 def open_sparse(*args, **kwargs)->Any:    
     file = open(*args, **kwargs)
     if file.writable():
         # Linux does not need to mark a file sparse, we just make it sparse as we go.
         file.hole = MethodType(hole, file)
+        file.size_on_disk = MethodType(size_on_disk, file)
         return file
     file.close()
     raise RuntimeError('File not opened as writeable.')
