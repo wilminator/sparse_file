@@ -4,15 +4,23 @@ on: [push, pull_request]
 
 jobs:
   quality:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.8", "3.9", "3.10", "3.11"]
+
     # Set up operating system
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    env:
+      python_version: ${{ matrix.python }}
 
     # Define job steps
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: ${{ env.python_version }}
 
       - name: Check-out repository
         uses: actions/checkout@v3
@@ -23,8 +31,32 @@ jobs:
       - name: Install package
         run: poetry install
 
+      - name: Cache coverage report
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-coverage-report
+        with:
+          # Propagate the coverage file.
+          path: ./coverage.xml
+          enableCrossOsArchive: true
+          key: ${{ env.cache_name }}-${{ github.sha }}
+
       - name: Test with pytest
-        run: poetry run pytest --cov=sparse_file --cov-report=xml tests/
+        run: poetry run pytest --cov=sparse_file --cov-report=xml --cov-append tests/
+
+      - name: Cache coverage report
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-coverage-report
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ./coverage.xml
+          key: ${{ runner.os }}-${{ env.python_version }}-coverage
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.python_version }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+                                                                                  
 
       - name: Use Codecov to track coverage
         uses: codecov/codecov-action@v3
@@ -35,3 +67,26 @@ jobs:
 
       - name: Build documentation
         run: poetry run make html --directory docs/
+
+  coverage:
+    # Set up operating system
+    runs-on: ubuntu-latest
+
+    # Define job steps
+    steps:
+      - name: Get the coverage report
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-coverage-report
+        with:
+          # Propagate the coverage file.
+          path: ./coverage.xml
+          enableCrossOsArchive: true
+          key: ${{ env.cache_name }}-${{ github.sha }}
+
+      - name: Use Codecov to track coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml   # coverage report
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
