@@ -6,7 +6,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u"sparsefile"
+project = u"sparse-file"
 copyright = u"2023, Michael Wilmes"
 author = u"Michael Wilmes"
 

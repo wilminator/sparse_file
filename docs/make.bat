@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=sparsefile
+set SPHINXPROJ=sparse-file
 
 if "%1" == "" goto help
 
