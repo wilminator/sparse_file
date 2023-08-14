@@ -9,6 +9,9 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python: ["3.8", "3.9", "3.10", "3.11"]
 
+    # Define concurrency so each step only runs one at a time.
+    concurrency: quality-${{ github.sha }}
+
     # Set up operating system
     runs-on: ${{ matrix.os }}
 
