@@ -29,6 +29,10 @@ jobs:
       - name: Install poetry
         uses: snok/install-poetry@v1
 
+      - name: Update PATH on Windows
+        run: PATH=%PATH%;C:\Users\runneradmin\.local\bin
+        if: ${{ matrix.os == 'windows-latest'}}
+
       - name: Install package
         run: poetry install
 
