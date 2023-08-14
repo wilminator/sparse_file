@@ -2,6 +2,9 @@ name: Quality
 
 on: [push, pull_request]
 
+env:
+  cache_name: cache-coverage-report
+
 jobs:
   quality:
     strategy:
@@ -15,15 +18,13 @@ jobs:
     # Set up operating system
     runs-on: ${{ matrix.os }}
 
-    env:
-      python_version: ${{ matrix.python }}
 
     # Define job steps
     steps:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.python_version }}
+          python-version: ${{ matrix.python }}
 
       - name: Check-out repository
         uses: actions/checkout@v3
@@ -34,22 +35,23 @@ jobs:
       - name: Install package
         run: poetry install
 
-      - name: Cache coverage report
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-coverage-report
-        with:
-          # Propagate the coverage file.
-          path: ./coverage.xml
-          enableCrossOsArchive: true
-          key: ${{ env.cache_name }}-${{ github.sha }}
-
       - name: Test with pytest
         run: poetry run pytest --cov=sparse_file --cov-report=xml --cov-append tests/
 
+      - name: Rename coverage.xml
+        run: mv coverage.xml coverage-${{ matrix.os }}-${{ matrix.python }}.xml
+          
+      - name: Cache coverage report
+        uses: actions/cache/save@v3
+        with:
+          # Propagate the coverage file.
+          path: ./coverage-${{ matrix.os }}-${{ matrix.python }}.xml
+          enableCrossOsArchive: true
+          key: ${{ env.cache_name }}-${{ github.sha }}
+
       - name: Build documentation
         run: poetry run make html --directory docs/
-        if: ${{ env.python_version }} != '3.8'
+        if: ${{ matrix.python }} != '3.8'
 
   coverage:
     # Set up operating system
@@ -59,12 +61,10 @@ jobs:
     # Define job steps
     steps:
       - name: Get the coverage report
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-coverage-report
+        uses: actions/cache/restore@v3
         with:
           # Propagate the coverage file.
-          path: ./coverage.xml
+          path: ./coverage*.xml
           enableCrossOsArchive: true
           key: ${{ env.cache_name }}-${{ github.sha }}
 
