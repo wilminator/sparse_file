@@ -17,6 +17,7 @@ pytest-cov = "^4.1.0"
 myst-nb = {version = "^0.17.2", python = "^3.9"}
 sphinx-autoapi = "^2.1.1"
 sphinx-rtd-theme = "^1.2.2"
+semantic-release = {version = "^0.1.0", python = "^3.9"}
 
 [tool.semantic_release]
 version_variable = "pyproject.toml:version" # version location
