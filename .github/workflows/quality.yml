@@ -48,7 +48,7 @@ jobs:
 
       - name: Build documentation
         run: poetry run make html --directory docs/
-        if: ${{ matrix.python }} != "3.8"
+        if: ${{ matrix.python != '3.8' }} 
 
   coverage:
     # Set up operating system
