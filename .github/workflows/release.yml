@@ -10,7 +10,7 @@ on:
       - main
   
 jobs:
-  deploy:
+  release:
     # Set up operating system
     runs-on: ubuntu-latest
 
