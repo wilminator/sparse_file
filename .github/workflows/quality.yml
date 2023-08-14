@@ -37,11 +37,8 @@ jobs:
         run: poetry install
 
       - name: Test with pytest
-        run: poetry run pytest --cov=sparse_file --cov-report=xml --cov-append tests/
+        run: poetry run pytest --cov=sparse_file --cov-report=xml:coverage-${{ matrix.os }}-${{ matrix.python }}.xml tests/
 
-      - name: Rename coverage.xml
-        run: mv coverage.xml coverage-${{ matrix.os }}-${{ matrix.python }}.xml
-          
       - name: Cache coverage report
         uses: actions/cache/save@v3
         with:
