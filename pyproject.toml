@@ -28,7 +28,8 @@ dist_path = "dist/"                         # where to put dists
 upload_to_release = true                    # auto-create GitHub release
 upload_to_pypi = false                      # don't auto-upload to PyPI
 remove_dist = false                         # don't remove dists
-patch_without_tag = true                    # do not patch without an appropriate tag, eg fix:
+patch_without_tag = false                    # do not patch without an appropriate tag, eg fix:
+tag_format = "{version}"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
