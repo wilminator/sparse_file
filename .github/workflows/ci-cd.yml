@@ -73,7 +73,7 @@ jobs:
       contents: write
 
     # Only if this is a push to main without a tag. The tag being pushed will create a new workflow trigger.
-    if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags') && github.event.base_ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.event.ref == 'refs/heads/main'
 
     # Define job steps
     steps:
