@@ -1,0 +1,58 @@
+name: Quality
+
+on: [workflow_call, workflow_dispatch]
+
+jobs:
+  quality:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.8", "3.9", "3.10", "3.11"]
+
+    # Set up operating system
+    runs-on: ${{ matrix.os }}
+
+    # Set the default shell to bash (for Windows)
+    defaults:
+      run:
+        shell: bash
+
+    # Define environment
+    environment: quality
+
+    # Define job steps
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Check-out repository
+        uses: actions/checkout@v3
+
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Install library
+        run: poetry install --no-interaction
+
+      - name: Test with pytest
+        run: poetry run pytest --cov=sparse_file --cov-report=xml tests/
+
+      - name: Use Codecov to track coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml   # coverage report
+          fail_ci_if_error: true # optional (default = false)
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Build documentation
+        run: poetry run make html --directory docs/
+        if: ${{ matrix.python != '3.8' }}
