@@ -3,7 +3,7 @@ name: Release
 on: 
   workflow_call: 
     secrets:
-      envPAT:
+      GITHUB_TOKEN:
         required: true
     outputs:
       released:
