@@ -39,7 +39,7 @@ jobs:
       - name: Install package dependencies
         run: poetry install
 
-      - name: Install package dependencies
+      - name: Build new package
         id: build
         run: poetry build
 
