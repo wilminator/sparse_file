@@ -2,9 +2,6 @@ name: Release
 
 on: 
   workflow_call: 
-    secrets:
-      GITHUB_TOKEN:
-        required: true
     outputs:
       released:
         description: Boolean if the version was incremented and needs to be deployed. 
