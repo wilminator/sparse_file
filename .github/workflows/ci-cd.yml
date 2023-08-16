@@ -3,25 +3,12 @@ name: CI-CD
 on: [push, pull_request]
 
 jobs:
-  get_branch:
-    runs-on: ubuntu-latest
-    outputs:
-      branch: ${{steps.extract_branch.outputs.branch }}
-    steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
-
   quality:
-    needs: get_branch
     uses: ./.github/workflows/quality.yml
 
   release:
     # Only run if the quality check succeeded
-    needs: 
-      - get_branch
-      - quality
+    needs: quality
 
     # IMPORTANT: this permission is mandatory for trusted publishing
     permissions:
@@ -36,9 +23,7 @@ jobs:
 
   deploy:
     # Only run if the release action succeeded
-    needs: 
-      - get_branch
-      - release
+    needs: release
 
     uses: ./.github/workflows/deploy.yml
     if: needs.release.outputs.released == 'true'

@@ -10,11 +10,6 @@ jobs:
     # Define environment
     environment: release
 
-    # IMPORTANT: this permission is mandatory for trusted publishing
-    permissions:
-      id-token: write
-      contents: write
-
     # Only if this is a push to main without a tag. The tag being pushed will create a new workflow trigger.
     if: github.event.ref == 'refs/heads/main'
 
