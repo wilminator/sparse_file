@@ -2,6 +2,37 @@
 
 
 
+## v0.0.2 (2023-08-16)
+
+### Ci
+
+* ci: Still fixing secrets ([`080619a`](https://github.com/wilminator/sparse_file/commit/080619ae3af0a56ec9a0482e9f7a07c9f0e89b7d))
+
+* ci: corrected required secret ([`0d95e2f`](https://github.com/wilminator/sparse_file/commit/0d95e2fcdd581b07231b193d4f47fa459b9f6338))
+
+* ci: fixed permissions. optimized. ([`4b45012`](https://github.com/wilminator/sparse_file/commit/4b4501259d2d4db848f0e8499c45f6e97cd32d70))
+
+* ci: Self referencing workflow files! ([`82dada8`](https://github.com/wilminator/sparse_file/commit/82dada83ad36fb8728aeedc725ac9f855e5b0f00))
+
+* ci: trying to use branch name in ref to pick workflows ([`bf42012`](https://github.com/wilminator/sparse_file/commit/bf420124e3698d7003ca1091d0ea29bbb3956509))
+
+* ci: fix names ([`7c67a1f`](https://github.com/wilminator/sparse_file/commit/7c67a1f1ebadce557fe5bc977f965b3de24c0eda))
+
+* ci: Splitting into modules ([`2580493`](https://github.com/wilminator/sparse_file/commit/258049374bae409d99fb4ae77d2874a416355552))
+
+* ci: always rebuild and republish ([`15c0a83`](https://github.com/wilminator/sparse_file/commit/15c0a8377cef987ddcca8067e30f1b0eb1297a20))
+
+### Fix
+
+* fix(ci): Updated main CI to use modules ([`3549113`](https://github.com/wilminator/sparse_file/commit/354911331d33669504f0269159d9322e0d56f651))
+
+### Unknown
+
+* clenup: Moved the badge to teh top of the README file ([`0e234d2`](https://github.com/wilminator/sparse_file/commit/0e234d21f21306fca31934bd2db3151421f4bcc8))
+
+* cleanup: remove trailing whitespaces ([`3ffe0a8`](https://github.com/wilminator/sparse_file/commit/3ffe0a80130f4a906bba707385a47495af469566))
+
+
 ## v0.0.1 (2023-08-16)
 
 ### Chore
