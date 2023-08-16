@@ -3,12 +3,25 @@ name: CI-CD
 on: [push, pull_request]
 
 jobs:
+  get_branch:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{steps.extract_branch.outputs.branch }}
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
   quality:
-    uses: wilminator/sparse_file/.github/workflows/quality.yml
+    needs: get_branch
+    uses: wilminator/sparse_file/.github/workflows/quality.yml@${{ needs.get_branch.outputs.branch }}
 
   release:
     # Only run if the quality check succeeded
-    needs: quality
+    needs: 
+      - get_branch
+      - quality
 
     # IMPORTANT: this permission is mandatory for trusted publishing
     permissions:
@@ -18,12 +31,14 @@ jobs:
     # Only if this is a push to main without a tag. The tag being pushed will create a new workflow trigger.
     if: github.event_name == 'push' && github.event.ref == 'refs/heads/main'
 
-    uses: wilminator/sparse_file/.github/workflows/release.yml
+    uses: wilminator/sparse_file/.github/workflows/release.yml@${{ needs.get_branch.outputs.branch }}
     secrets: inherit
 
   deploy:
     # Only run if the release action succeeded
-    needs: release
+    needs: 
+      - get_branch
+      - release
 
-    uses: wilminator/sparse_file/.github/workflows/deploy.yml
+    uses: wilminator/sparse_file/.github/workflows/deploy.yml@${{ needs.get_branch.outputs.branch }}
     if: needs.release.outputs.released == 'true'
