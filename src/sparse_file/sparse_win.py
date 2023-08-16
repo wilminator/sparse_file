@@ -66,4 +66,4 @@ def open_sparse(*arg, **kwarg)->Any:
         return file
     file.close()
     raise RuntimeError('File not opened as writeable.')
-    
+

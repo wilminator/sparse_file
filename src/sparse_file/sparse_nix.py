@@ -26,17 +26,17 @@ def hole(self, start:int, length:int):
     errno = get_errno()
     if result == 0:
         return True
-    raise OSError(errno, 'Unable to deallocate space in file')    
+    raise OSError(errno, 'Unable to deallocate space in file')
 
 def size_on_disk(self):
     if self.closed:
         raise RuntimeError("The file has been closed.")
     fileno = self.fileno()
-    stat = fstat(fileno)    
+    stat = fstat(fileno)
     # Magic is per os.stat_result documentation https://docs.python.org/3/library/os.html#os.stat_result
     return 512 * stat.st_blocks
 
-def open_sparse(*args, **kwargs)->Any:    
+def open_sparse(*args, **kwargs)->Any:
     file = open(*args, **kwargs)
     if file.writable():
         # Linux does not need to mark a file sparse, we just make it sparse as we go.
