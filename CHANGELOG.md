@@ -58,6 +58,14 @@
 
 ### Ci
 
+* ci: There is no poetry in the PSV docker container ([`95ce795`](https://github.com/wilminator/sparse_file/commit/95ce79525fc485232d2d078566e3606e184d0172))
+
+* ci: possible duplicate key ([`df205fa`](https://github.com/wilminator/sparse_file/commit/df205fad0f9db10877aa97b4eee5f2f470be47bb))
+
+* ci: updating python-semantic-verison again ([`2eb4d53`](https://github.com/wilminator/sparse_file/commit/2eb4d5318a1856c6d9de29837e64b85bbb030de2))
+
+* ci: trying different format ([`1f3aa86`](https://github.com/wilminator/sparse_file/commit/1f3aa863f478644996eb6945d51e0ef949364b00))
+
 * ci: trying a different approach ([`75da82b`](https://github.com/wilminator/sparse_file/commit/75da82ba2dffd3a8afcae271849cab2fbeac0ba1))
 
 * ci: retrigger commit ([`97179a8`](https://github.com/wilminator/sparse_file/commit/97179a852d722006648f05218f9282b34fe83bfd))
@@ -83,6 +91,10 @@
 * test: Better testing file ([`cfbfe71`](https://github.com/wilminator/sparse_file/commit/cfbfe71edc8ddeb8691744dd5228be4d43b8cb99))
 
 ### Unknown
+
+* More README proofreading ([`cc073c4`](https://github.com/wilminator/sparse_file/commit/cc073c4acb7f05a4487e4df85e6a8d6924fb6039))
+
+* corrected badge ([`73d8ebf`](https://github.com/wilminator/sparse_file/commit/73d8ebf72c61bcf285896cd8fc257417645dac11))
 
 * CI: removed arg name warning ([`a860246`](https://github.com/wilminator/sparse_file/commit/a860246a392787ad78b37062191d06b8e6518e34))
 
