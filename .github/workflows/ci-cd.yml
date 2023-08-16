@@ -15,7 +15,7 @@ jobs:
 
   quality:
     needs: get_branch
-    uses: wilminator/sparse_file/.github/workflows/quality.yml@${{ needs.get_branch.outputs.branch }}
+    uses: ./.github/workflows/quality.yml
 
   release:
     # Only run if the quality check succeeded
@@ -31,7 +31,7 @@ jobs:
     # Only if this is a push to main without a tag. The tag being pushed will create a new workflow trigger.
     if: github.event_name == 'push' && github.event.ref == 'refs/heads/main'
 
-    uses: wilminator/sparse_file/.github/workflows/release.yml@${{ needs.get_branch.outputs.branch }}
+    uses: ./.github/workflows/release.yml
     secrets: inherit
 
   deploy:
@@ -40,5 +40,5 @@ jobs:
       - get_branch
       - release
 
-    uses: wilminator/sparse_file/.github/workflows/deploy.yml@${{ needs.get_branch.outputs.branch }}
+    uses: ./.github/workflows/deploy.yml
     if: needs.release.outputs.released == 'true'
