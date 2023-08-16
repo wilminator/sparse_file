@@ -16,7 +16,7 @@ $ pip install sparse-file
 
 This function wraps the [built-in open() function](https://docs.python.org/3/library/functions.html#open). An additional two methods, `hole()` and `size_on_disk()` are attached to the object returned by open. Refer to the Python documentation for open for explanations on the arguments, returned object, and potential exceptions.
 
-As a requirement for use, the opened file must be writable, as verified by the writeable() method of the file object. If not, this function raises a RuntimeError and the file is closed.
+As a requirement for use, the opened file must be writable, as verified by the `writable()` method of the file object. If not, this function raises a `RuntimeError` and the file is closed.
 
 `file.hole(start, length)`
 
