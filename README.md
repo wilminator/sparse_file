@@ -3,6 +3,8 @@ Python package for creating and managing sparse files
 
 This is a pure-Python package that uses ctypes to call OS-native libraries to create sparse files and to remove physical storage assigned to those files. It was inspired by the [fallocate PyPi module](https://github.com/trbs/fallocate), but requires no compilation. I would be willing to extend this to work on OS X but personally lack the means to test the code.
 
+![Current status](https://github.com/github/docs/actions/workflows/ci-cd.yml/badge.svg?event=push)
+
 ## Installation
 
 ```bash
