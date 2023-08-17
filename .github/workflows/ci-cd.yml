@@ -25,5 +25,9 @@ jobs:
     # Only run if the release action succeeded
     needs: release
 
+    # This enables the upload to Pypi
+    permissions:
+      id-token: write
+
     uses: ./.github/workflows/deploy.yml
     if: needs.release.outputs.released == 'true'
