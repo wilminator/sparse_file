@@ -2,9 +2,15 @@
 
 
 
-## v0.0.2 (2023-08-16)
+## v0.0.2 (2023-08-17)
 
 ### Ci
+
+* ci: update permission on main ci-cd workflow ([`82f2a81`](https://github.com/wilminator/sparse_file/commit/82f2a81a798e091f165e44145b9999c73f9002f7))
+
+* ci: Grant deploy permissions to upload to Pypi ([`0b9cdb9`](https://github.com/wilminator/sparse_file/commit/0b9cdb914679b3ccf629d7be21127b7273088034))
+
+* ci: fix release workflow ([`88558d1`](https://github.com/wilminator/sparse_file/commit/88558d13ba37204a48d3fff8593c9937715f03ac))
 
 * ci: Still fixing secrets ([`080619a`](https://github.com/wilminator/sparse_file/commit/080619ae3af0a56ec9a0482e9f7a07c9f0e89b7d))
 
