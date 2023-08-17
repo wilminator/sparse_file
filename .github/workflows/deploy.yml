@@ -1,6 +1,13 @@
 name: Deploy
 
-on: [workflow_call, workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      skip_test:
+        type: boolean
+        required: true
+        description: Should the deploy to test be skipped?
+  workflow_call:
 
 jobs:
   deploy:
@@ -46,6 +53,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
+        if: github.event_name != 'workflow_dispatch' || inputs.skip_test != true
 
       - name: Test install from TestPyPI
         run: |
@@ -53,6 +61,7 @@ jobs:
             --index-url https://test.pypi.org/simple/ \
             --extra-index-url https://pypi.org/simple \
             sparse-file
+        if: github.event_name != 'workflow_dispatch' || inputs.skip_test != true
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
