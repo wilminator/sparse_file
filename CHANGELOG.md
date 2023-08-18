@@ -2,6 +2,17 @@
 
 
 
+## v0.0.3 (2023-08-18)
+
+### Ci
+
+* ci: deploy can now bypass test deployment ([`febdad9`](https://github.com/wilminator/sparse_file/commit/febdad9dd190aaac9404f6b8aebc4aa58c94e613))
+
+### Fix
+
+* fix: ci not updating version tag in pypi or in repo ([`4e1a373`](https://github.com/wilminator/sparse_file/commit/4e1a3739895aecbe863dbe73b96baeaa8c074646))
+
+
 ## v0.0.2 (2023-08-17)
 
 ### Ci

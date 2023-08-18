@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sparse-file"
-version = "0.0.2"
+version = "0.0.3"
 description = "Python package for creating and managing sparse files."
 authors = ["Michael Wilmes"]
 license = "MIT"
